@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block title %}Notes{% endblock %}
+
+{% block main %}
+<main class='container'>
+  <div class='row'>
+    <h1>Your notes</h1>
+  </div>
+
+  <div class='row'>
+    <div class='col-0 col-md-1 col-lg-2'></div>
+
+    <div class='col-12 col-md-9 col-lg-7'>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class='container'>
+            {% for msg in messages %}
+              <div class='alert alert-info' role='alert'
+                   style='padding: 2px; padding-left: 10px;'>{{ msg }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <div class='container mt-1 mb-5'>
+      <form method='POST' action='/' style='max-width: 480px;'>
+        {{ form.csrf_token }}
+        {{ form.txt.label(class_='form-label') }}
+        {{ form.txt(class_='form-control', style_='height: 150px;') }}
+        <input type='submit' value='add note' class='btn btn-primary mt-2'>
+
+        {% if form.txt.errors %}
+          <ul>
+            {% for error in form.txt.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </form>
+      </div>
+
+      <div class='container'>
+        {% if not note_list %}
+          <p>No notes yet.</p>
+        {% endif %}
+        {% for note in note_list|reverse %}
+          <div class='card'>
+            <div class='card-body'>
+              <h6 class='card-title mb-1 text-body-secondary'
+                  style='font-size: 14px;'>{{ note.data|dateformat }}</h6>
+              <p class=card-text>{{ note.txt }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <div class='col-0 col-md-2 col-lg-3'></div>
+
+  </div>
+</main>
+{% endblock %}

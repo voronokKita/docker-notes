@@ -1,0 +1,37 @@
+# Common
+
++ a local cwd volume for data
++ docker file
++ docker compose
++ docker + python
++ docker + werkzeug
++ docker + Flask
++ healthcheck
++ multi-stage
++ sqlalchemy write error
+- security
+
+
+# Controller
+
++ start writing
++ buid a container
++ compose
++ database connection
++ write the models
++ main execution flow
++ wtf-form
++ view's wrapper
+
+
+# Postgres
+
++ install & hello
++ compose
++ init script
+
+
+# pgAdmin
+
++ install & connect
++ compose
